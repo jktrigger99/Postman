@@ -1,4 +1,5 @@
-### Here are some Postman collections for such open API resources as:
-### 1. Swagger Petstore [link](https://petstore.swagger.io/#/)
-### 2. Go REST [link](https://gorest.co.in/)
-### 3. Reqres [link](https://reqres.in/)
+## Postman Homeworks
+
+- [Homework #1](https://github.com/jktrigger99/SQL/tree/main/Postman_HW_1)
+- [Homework #2](https://github.com/jktrigger99/SQL/tree/main/Postman_HW_2)
+- [Homework #3](https://github.com/jktrigger99/SQL/tree/main/Postman_HW_3)
