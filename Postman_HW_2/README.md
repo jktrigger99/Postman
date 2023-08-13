@@ -39,23 +39,19 @@ pm.test("Status code is 200", function () {
 
 ### 4. Проверить, что name в ответе равно name в запросе (name вбить руками)
 ```
-var reqBody = request.data
-var req_name = reqBody.name
-pm.test("Check name is " + req_name, function () {   
+pm.test("[Hardcode] Check name is Evgeny", function () {   
     pm.expect(respBody.name).to.eql("Evgeny");
 });
 ```
 ### 5. Проверить, что age в ответе равно age в запросе (age вбить руками)
 ```
-var req_age = reqBody.age
-pm.test("Check age is " + req_age, function () {   
+pm.test("[Hardcode] Check age is 39", function () {   
     pm.expect(respBody.age).to.eql("39");
 });
 ```
 ### 6. Проверить, что salary в ответе равно salary в запросе (salary вбить руками)
 ```
-var req_salary = reqBody.salary
-pm.test("Check salary is " + req_salary, function () {   
+pm.test("[Hardcode] Check salary is 1000" + req_salary, function () {   
     pm.expect(respBody.salary).to.eql(1000);
 });
 ```
@@ -65,18 +61,21 @@ pm.test("Check salary is " + req_salary, function () {
 
 ### 8. Проверить, что name в ответе равно name в запросе (name забрать из request)
 ```
+var req_name = reqBody.name
 pm.test("Check name is " + req_name, function () {   
     pm.expect(respBody.name).to.eql(req_name);
 });
 ```
 ### 9. Проверить, что age в ответе равно age в запросе (age забрать из request)
 ```
+var req_age = reqBody.age
 pm.test("Check age is " + req_age, function () {   
     pm.expect(respBody.age).to.eql(req_age);
 });
 ```
 ### 10. Проверить, что salary в ответе равно salary в запросе (salary забрать из request)
 ```
+var req_salary = reqBody.salary
 pm.test("Check salary is " + req_salary, function () {   
     pm.expect(respBody.salary).to.eql(+req_salary);
 });
@@ -85,7 +84,7 @@ pm.test("Check salary is " + req_salary, function () {
 
 `console.log(respBody.family)`
 
-### 12. Проверить что u_salary_1_5_year в ответе равно salary*4 (salary забрать из request)
+### 12. Проверить, что u_salary_1_5_year в ответе равно salary*4 (salary забрать из request)
 ```
 pm.test("Check salary after 1,5 years is " + (+req_salary * 4), function () {   
     pm.expect(respBody.family.u_salary_1_5_year).to.eql(+req_salary * 4);
