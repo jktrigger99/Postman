@@ -39,6 +39,7 @@ pm.test("Status code is 200", function () {
 
 ### 4. Проверить, что name в ответе равно name в запросе (name вбить руками)
 ```
+var reqBody = request.data
 var req_name = reqBody.name
 pm.test("Check name is " + req_name, function () {   
     pm.expect(respBody.name).to.eql("Evgeny");
