@@ -39,22 +39,19 @@ pm.test("Status code is 200", function () {
 
 ### 4. Проверить, что name в ответе равно name в запросе (name вбить руками)
 ```
-var req_name = reqBody.name
-pm.test("Check name is " + req_name, function () {   
+pm.test("[Hardcode] Check name is Evgeny", function () {   
     pm.expect(respBody.name).to.eql("Evgeny");
 });
 ```
 ### 5. Проверить, что age в ответе равно age в запросе (age вбить руками)
 ```
-var req_age = reqBody.age
-pm.test("Check age is " + req_age, function () {   
+pm.test("[Hardcode] Check age is 39", function () {   
     pm.expect(respBody.age).to.eql("39");
 });
 ```
 ### 6. Проверить, что salary в ответе равно salary в запросе (salary вбить руками)
 ```
-var req_salary = reqBody.salary
-pm.test("Check salary is " + req_salary, function () {   
+pm.test("[Hardcode] Check salary is 1000" + req_salary, function () {   
     pm.expect(respBody.salary).to.eql(1000);
 });
 ```
@@ -64,18 +61,21 @@ pm.test("Check salary is " + req_salary, function () {
 
 ### 8. Проверить, что name в ответе равно name в запросе (name забрать из request)
 ```
+var req_name = reqBody.name
 pm.test("Check name is " + req_name, function () {   
     pm.expect(respBody.name).to.eql(req_name);
 });
 ```
 ### 9. Проверить, что age в ответе равно age в запросе (age забрать из request)
 ```
+var req_age = reqBody.age
 pm.test("Check age is " + req_age, function () {   
     pm.expect(respBody.age).to.eql(req_age);
 });
 ```
 ### 10. Проверить, что salary в ответе равно salary в запросе (salary забрать из request)
 ```
+var req_salary = reqBody.salary
 pm.test("Check salary is " + req_salary, function () {   
     pm.expect(respBody.salary).to.eql(+req_salary);
 });
@@ -84,7 +84,7 @@ pm.test("Check salary is " + req_salary, function () {
 
 `console.log(respBody.family)`
 
-### 12. Проверить что u_salary_1_5_year в ответе равно salary*4 (salary забрать из request)
+### 12. Проверить, что u_salary_1_5_year в ответе равно salary*4 (salary забрать из request)
 ```
 pm.test("Check salary after 1,5 years is " + (+req_salary * 4), function () {   
     pm.expect(respBody.family.u_salary_1_5_year).to.eql(+req_salary * 4);
@@ -135,14 +135,14 @@ pm.test("Check salary is " + req_salary, function () {
 
 `console.log(respBody.family)`
 
-### 9. Проверить, что у параметра dog есть параметры name
+### 9. Проверить, что у параметра dog есть параметр name
 ```
 var respDog = respBody.family.pets.dog
 pm.test("Check that dog has a name", function () {   
     pm.expect(respDog).to.have.property("name")
 });
 ```
-### 10. Проверить, что у параметра dog есть параметры age
+### 10. Проверить, что у параметра dog есть параметр age
 ```
 pm.test("Check that dog has age", function () {   
     pm.expect(respDog).to.have.property("age")
@@ -195,9 +195,10 @@ pm.test("Check age is " + req_age, function () {
 });
 ```
 ### 7. Вывести в консоль параметр salary из request
-
-`console.log(req_salary)`
-
+```
+var req_salary = req_url.salary;
+console.log(req_salary);
+```
 ### 8. Вывести в консоль параметр salary из response
 
 `console.log(respBody.salary)`
@@ -234,15 +235,15 @@ pm.test("Check salary is " + req_salary*3, function () {
 ```
 ### 15. Создать в окружении переменную name
 
-Создаём окружение, далее либо вручную в параметрах окружения создаём переменную name, либо при выполнении п.18 она создастся автоматически
+Создаём окружение, далее либо вручную в параметрах окружения создаём переменную `name`, либо при выполнении п.18 она создастся автоматически
 
 ### 16. Создать в окружении переменную age
 
-Либо вручную в параметрах окружения создаём переменную age, либо при выполнении п.19 она создастся автоматически
+Либо вручную в параметрах окружения создаём переменную `age`, либо при выполнении п.19 она создастся автоматически
 
 ### 17. Создать в окружении переменную salary
 
-Либо вручную в параметрах окружения создаём переменную salary, либо при выполнении п.20 она создастся автоматически
+Либо вручную в параметрах окружения создаём переменную `salary`, либо при выполнении п.20 она создастся автоматически
 
 ### 18. Передать в окружение переменную name
 
@@ -259,7 +260,7 @@ pm.test("Check salary is " + req_salary*3, function () {
 ### 21. Написать цикл, который выведет в консоль по порядку элементы списка из параметра salary.
 ```
 for (var i = 0; i < respBody.salary.length; i++) {
-    console.log(respBody.salary[i])
+    console.log(respBody.salary[i]);
 }
 ```
 
@@ -267,15 +268,15 @@ for (var i = 0; i < respBody.salary.length; i++) {
 
 ### 1. Вставить параметр salary из окружения в request
 
-В ключ salary вставляем значение {{salary}}
+В ключ `salary` (Body: form-data) вставляем значение `{{salary}}`
 
 ### 2. Вставить параметр age из окружения в age
 
-В ключ age вставляем значение {{age}}
+В ключ `age` вставляем значение `{{age}}`
 
 ### 3. Вставить параметр name из окружения в name
 
-В ключ name вставляем значение {{name}}
+В ключ `name` вставляем значение `{{name}}`
 
 ### 4. Отправить запрос.
 
@@ -300,37 +301,37 @@ pm.test("Status code is 200", function () {
 ### 8. Проверить, что json response имеет параметр start_qa_salary
 ```
 pm.test("Check that response has the start_qa_salary parameter", function () {   
-    pm.expect(respBody).to.have.property("start_qa_salary")
+    pm.expect(respBody).to.have.property("start_qa_salary");
 });
 ```
 ### 9. Проверить, что json response имеет параметр qa_salary_after_6_months
 ```
 pm.test("Check that response has the qa_salary_after_6_months parameter", function () {   
-    pm.expect(respBody).to.have.property("qa_salary_after_6_months")
+    pm.expect(respBody).to.have.property("qa_salary_after_6_months");
 });
 ```
 ### 10. Проверить, что json response имеет параметр qa_salary_after_12_months
 ```
 pm.test("Check that response has the qa_salary_after_12_months parameter", function () {   
-    pm.expect(respBody).to.have.property("qa_salary_after_12_months")
+    pm.expect(respBody).to.have.property("qa_salary_after_12_months");
 });
 ```
 ### 11. Проверить, что json response имеет параметр qa_salary_after_1.5_year
 ```
 pm.test("Check that response has the qa_salary_after_1.5_year parameter", function () {   
-    pm.expect(respBody).to.have.property("qa_salary_after_1.5_year")
+    pm.expect(respBody).to.have.property("qa_salary_after_1.5_year");
 });
 ```
 ### 12. Проверить, что json response имеет параметр qa_salary_after_3.5_years
 ```
 pm.test("Check that response has the qa_salary_after_3.5_years parameter", function () {   
-    pm.expect(respBody).to.have.property("qa_salary_after_3.5_years")
+    pm.expect(respBody).to.have.property("qa_salary_after_3.5_years");
 });
 ```
 ### 13. Проверить, что json response имеет параметр person
 ```
 pm.test("Check that response has the person parameter", function () {   
-    pm.expect(respBody).to.have.property("person")
+    pm.expect(respBody).to.have.property("person");
 });
 ```
 ### 14. Проверить, что параметр start_qa_salary равен salary из request (salary забрать из request)
@@ -342,55 +343,55 @@ pm.test("Check that request and response salaries are equal", function () {
 ### 15. Проверить, что параметр qa_salary_after_6_months равен salary*2 из request (salary забрать из request)
 ```
 pm.test("Check that request salary*2 = qa_salary_after_6_months", function () {   
-    pm.expect(respBody.qa_salary_after_6_months).to.eql(+req_salary*2);
+    pm.expect(respBody.qa_salary_after_6_months).to.eql(req_salary * 2);
 });
 ```
 ### 16. Проверить, что параметр qa_salary_after_12_months равен salary*2.7 из request (salary забрать из request)
 ```
 pm.test("Check that request salary*2.7 = qa_salary_after_12_months", function () {   
-    pm.expect(respBody.qa_salary_after_12_months).to.eql(+req_salary*2.7);
+    pm.expect(respBody.qa_salary_after_12_months).to.eql(req_salary * 2.7);
 });
 ```
 ### 17. Проверить, что параметр qa_salary_after_1.5_year равен salary*3.3 из request (salary забрать из request)
 ```
 pm.test("Check that request salary*3.3 = qa_salary_after_1.5_year", function () {   
-    pm.expect(respBody["qa_salary_after_1.5_year"]).to.eql(+req_salary*3.3);
+    pm.expect(respBody["qa_salary_after_1.5_year"]).to.eql(req_salary * 3.3);
 });
 ```
 ### 18. Проверить, что параметр qa_salary_after_3.5_years равен salary*3.8 из request (salary забрать из request)
 ```
 pm.test("Check that request salary*3.8 = qa_salary_after_3.5_years", function () {   
-    pm.expect(respBody["qa_salary_after_3.5_years"]).to.eql(+req_salary*3.8);
+    pm.expect(respBody["qa_salary_after_3.5_years"]).to.eql(req_salary * 3.8);
 });
 ```
-### 19. Проверить, что в параметре person, 1-й элемент из u_name равен salary из request (salary забрать из request)
+### 19. Проверить, что в параметре person 1-й элемент из u_name равен salary из request (salary забрать из request)
 ```
 pm.test("Check that request salary = u_name[1]", function () {   
-    pm.expect(respBody.person.u_name[1]).to.eql(+req_salary)
+    pm.expect(respBody.person.u_name[1]).to.eql(+req_salary);
 });
 ```
-### 20. Проверить, что что параметр u_age равен age из request (age забрать из request)
+### 20. Проверить, что параметр u_age равен age из request (age забрать из request)
 ```
 pm.test("Check that request age = u_age", function () {   
-    pm.expect(respBody.person.u_age).to.eql(+req_age)
+    pm.expect(respBody.person.u_age).to.eql(+req_age);
 });
 ```
 ### 21. Проверить, что параметр u_salary_5_years равен salary*4.2 из request (salary забрать из request)
 ```
 pm.test("Check that request salary*4.2 = u_salary_5_years", function () {   
-    pm.expect(respBody.person.u_salary_5_years).to.eql(+req_salary*4.2);
+    pm.expect(respBody.person.u_salary_5_years).to.eql(req_salary * 4.2);
 });
 ```
-### 22. ***Написать цикл который выведет в консоль по порядку элементы списка из параметра person
+### 22. ***Написать цикл, который выведет в консоль по порядку элементы списка из параметра person
 ```
 for (i in respBody.person) {
     if (typeof respBody.person[i] == "object") {
         for (j in respBody.person[i]) {
-           console.log(`${i}: ${respBody.person[i][j]}`) 
+           console.log(`${i}: ${respBody.person[i][j]}`);
         }
     }
     else {
-        console.log(`${i}: ${respBody.person[i]}`) 
+        console.log(`${i}: ${respBody.person[i]}`);
         }
 }
 ```
